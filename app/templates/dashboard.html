@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+<div class="container">
+   <a class="navbar-brand fw-bold" href="{{ url_for('index') }}">LCCC - Administration</a>
+   <div class="d-flex">
+      <a type="button" class="btn btn-primary rounded-0" href="/create-receipt">Create e-receipt</a>
+      <div class="dropdown my-auto mx-4">
+         <button class="btn dropdown-toggle rounded-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+         {{ current_user.username }}
+         </button>
+         <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/logout">Log out</a></li>
+         </ul>
+      </div>
+   </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class=" mt-5 mx-5 d-flex flex-column justify-content-center align-items-center">
+   <h1 class="mb-4">Dashboard</h1>
+   <table class="table">
+      <thead>
+         <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">From</th>
+            <th scope="col">For</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Payment type</th>
+            <th scope="col">Downlaod</th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for e_receipt in e_receipts %}
+         <tr>
+            <th scope="row">{{ e_receipt.id }}</th>
+            <td>{{ e_receipt.date }}</td>
+            <td>{{ e_receipt._from }}</td>
+            <td>{{ e_receipt._for }}</td>
+            <td>{{ e_receipt.amount }}</td>
+            <td>{{ e_receipt.payment_type }}</td>
+            <td>
+                <a href="/static/e-receipts/{{ e_receipt.id }}.jpg" class="bi bi-cloud-arrow-down-fill text-primary" target="_blank"></a>
+            </td>
+         </tr>
+         {% endfor %}
+      </tbody>
+   </table>
+</div>
+{% endblock %}

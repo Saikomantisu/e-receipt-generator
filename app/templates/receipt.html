@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+<div class="container">
+	<a class="navbar-brand fw-bold" href="{{ url_for('index') }}">LCCC - Administration</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class=" mt-5 mx-5 d-flex flex-column justify-content-center align-items-center">
+	<h1 class="mb-4">E-Receipt</h1>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-floating mb-3">
+            {{ form.ffrom(class="form-control", size=20, placeholder="") }}
+            {{ form.ffrom.label }}
+
+        </div>
+
+        <div class="form-floating mb-3">
+            {{ form.ffor(class="form-control", size=40, placeholder="") }}
+            {{ form.ffor.label }}
+
+        </div>
+
+        <div class="form-floating mb-3">
+            {{ form.amount(class="form-control", size=40, placeholder="") }}
+            {{ form.amount.label }}
+
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form.payment_type.label }}
+            {{ form.payment_type(class="form-check") }}
+        </div>
+
+        <div class="form-floating mb-3">
+            {{ form.date(class="form-control", size=40, placeholder="") }}
+            {{ form.date.label }}
+
+        </div>
+
+        {{ form.submit(class="btn btn-success rounded-0") }}
+    </form>
+{% endblock %}

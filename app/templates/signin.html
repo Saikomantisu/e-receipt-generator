@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+<div class="container">
+	<a class="navbar-brand fw-bold" href="{{ url_for('index') }}">LCCC - Administration</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class=" mt-5 mx-5 d-flex flex-column justify-content-center align-items-center">
+	<h1 class="mb-4">Signin</h1>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group mb-3">
+            {{ form.username.label }}
+            {{ form.username(class="form-control", size=40, placeholder="") }}
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form.email.label }}
+            {{ form.email(class="form-control", size=40, placeholder="") }}
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form.password.label }}
+            {{ form.password(class="form-control", size=40, placeholder="") }}
+        </div>
+
+        {{ form.submit(class="btn btn-primary rounded-0") }}
+
+        <p class="mt-2">Already have an account? <a href="/login">Log in</a></p>
+    </form>
+{% endblock %}
